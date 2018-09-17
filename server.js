@@ -1,13 +1,8 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const cors = require('cors');
+const http = require('http');
+const app = require('./app')
 
-const app = express();
+const port = process.env.PORT || 3000;
 
-const port = 3000;
+const server = http.createServer(app);
 
-app.listen(port, () => {
-    console.log("Server running");
-});
+server.listen(port); 
