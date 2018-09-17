@@ -4,27 +4,30 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
 
-const db = require('./databse/db.js')();
+const db = require('./databse/db')();
+const userRoutes = require('./api/routes/user');
 
 const app = express();
 
-app.use((req, res) => {
-    require('./databse/db.js');
-    console.log("database connected");
+app.use(bodyParser.urlencoded({ extends: false }));
+app.use(bodyParser.json());
+
+
+//app.use('/user', userRoutes);
+app.use((req, res, next)=>{
+    const error = {
+        message: 'Not found',
+        status: 404
+    };
 });
 
-app.use((req, res, next) => {
-    const error = new Error('Not found');
-    error.status(404);
-    next(error);
-});
-
-app.use((error, req, res, next) => {
+app.use((error, req, res, next)=>{
     res.status(error.status || 500);
     res.json({
-        msg: error.message
+        error: {
+            message: error.message
+        }
     });
-});
-
+});  
 
 module.exports = app;
