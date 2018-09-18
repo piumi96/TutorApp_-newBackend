@@ -1,11 +1,10 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
-const con = require('../../databse/db')();
-//const con = db.con;
+const con = require('../../databse/db');
 const router = express.Router();
 
 router.post('/register', (req, res) => {
-    console.log('posting');
+
     var saltRounds = 10;
     var role = req.body.role;
     var fname = req.body.fname;
