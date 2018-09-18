@@ -6,6 +6,7 @@ const cors = require('cors');
 
 const con = require('./databse/db');
 const userRoutes = require('./api/routes/user');
+const profileEdit = require('./api/routes/profileEdit');
 
 const app = express();
 
@@ -15,13 +16,13 @@ app.use(bodyParser.json());
 con.connect((err) => {
     if(err) throw err;
     else{
-        console.log('Database connected');
-        //app.use('/user', userRoutes);   
+        console.log('Database connected');  
     }
 
 });
 
-app.use('/user', userRoutes);
+app.use('/', userRoutes);
+app.use('/', profileEdit);
 
 app.use((req, res, next)=>{
     const error = {

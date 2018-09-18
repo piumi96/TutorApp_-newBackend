@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const con = require('../../databse/db');
+
 const router = express.Router();
 var saltRounds = 10;
 
