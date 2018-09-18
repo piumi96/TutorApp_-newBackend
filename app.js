@@ -7,6 +7,7 @@ const cors = require('cors');
 const con = require('./databse/db');
 const userRoutes = require('./api/routes/user');
 const profileEdit = require('./api/routes/profileEdit');
+const searchRoutes = require('./api/routes/search');
 
 const app = express();
 
@@ -23,6 +24,7 @@ con.connect((err) => {
 
 app.use('/', userRoutes);
 app.use('/', profileEdit);
+app.use('/', searchRoutes);
 
 app.use((req, res, next)=>{
     const error = {
