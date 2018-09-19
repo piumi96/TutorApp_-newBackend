@@ -8,6 +8,7 @@ const con = require('./databse/db');
 const userRoutes = require('./api/routes/user');
 const profileEdit = require('./api/routes/profileEdit');
 const searchRoutes = require('./api/routes/search');
+const passportSetup = require('./config/passport-setup');
 
 const app = express();
 

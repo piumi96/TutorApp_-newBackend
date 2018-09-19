@@ -1,11 +1,13 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const passport = require('passport');
 const con = require('../../databse/db');
 
 const router = express.Router();
 var saltRounds = 10;
 
+//Register routes-----------------------------------------------------------------
 router.post('/register', (req, res) => {
 
     var role = req.body.role;
@@ -51,6 +53,15 @@ router.post('/register', (req, res) => {
     });
 });
 
+router.get('/google', passport.authenticate('google', {
+    scope: ['profile']
+}));
+
+router.get('/google/redirect', passport.authenticate('google'), (req, res) =>{
+    res.send('Callback URI reached');
+})
+
+//Login routes------------------------------------------------------------------
 router.post('/login', (req, res) => {
     var email = req.body.username;
     var pword = req.body.password;
