@@ -1,6 +1,7 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
 const keys = require('./keys');
+const con = require('../databse/db');
 
 passport.use(
     new GoogleStrategy({
@@ -8,9 +9,18 @@ passport.use(
         callbackURL: '/google/redirect',
         clientID: keys.google.clientID,
         clientSecret: keys.google.clientSecret
-    }, (accessToken, refreshToken, profile, done) => {
+    }, (accessToken, refreshToken, emails, done) => {
         //passport callback function
-        console.log(profile);
+        //console.log(emails);
+        user = {
+            fname: emails.name.givenName,
+            lname: emails.name.familyName,
+            email: emails.emails[0].value
+        };
+        console.log(user);
+
     })
-) 
+)
+
+
  

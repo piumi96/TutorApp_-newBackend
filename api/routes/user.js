@@ -54,7 +54,7 @@ router.post('/register', (req, res) => {
 });
 
 router.get('/google', passport.authenticate('google', {
-    scope: ['profile']
+    scope: ['emails']
 }));
 
 router.get('/google/redirect', passport.authenticate('google'), (req, res) =>{
