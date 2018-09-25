@@ -18,6 +18,15 @@ passport.use(
             email: emails.emails[0].value
         };
         console.log(user);
+        var sql = "insert into Tutor(FirstName, LastName, email) values('" + user.fname + "', '" + user.lname + "', '" + user.email + "')"
+
+        con.query(sql, (err, result) => {
+            if(err) throw err;
+            else{
+                console.log("user registered");
+            }
+        }); 
+        //module.exports = user;
 
     })
 )
