@@ -1,8 +1,10 @@
 const express = require('express');
+const passport = require('passport');
 const router = express.Router();
 const con = require('../../databse/db');
+const passportSetup = require('../../config/passport-setup');
 
-router.get('/search', (req, res) => {
+router.get('/search', passport.authenticate('google'), (req, res) => {
     var sql = "select * from tutor";
 
     con.query(sql, function(err, result){
