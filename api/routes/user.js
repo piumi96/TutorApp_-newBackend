@@ -3,6 +3,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const con = require('../../databse/db');
+var user = require('../../config/passport-setup');
+console.log(user);
 
 const router = express.Router();
 var saltRounds = 10;
@@ -54,7 +56,7 @@ router.post('/register', (req, res) => {
 });
 
 router.get('/google', passport.authenticate('google', {
-    scope: ['emails']
+    scope: ['email']
 }));
 
 router.get('/google/redirect', passport.authenticate('google'), (req, res) =>{
