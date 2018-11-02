@@ -5,7 +5,6 @@ const passport = require('passport');
 const con = require('../../databse/db');
 const user = require('../../config/passport-setup');
 
-
 const router = express.Router();
 var saltRounds = 10;
 
@@ -55,10 +54,18 @@ router.post('/register', (req, res) => {
     });
 });
 
-router.get('/google', passport.authenticate('google', {
+router.get('/google-student', passport.authenticate('google', {
     scope: ['email']
     //redirected to search
-}));
+}), (req, res) => {
+    const user = require('../../config/passport-setup')
+    console.log(user);
+    res.json({
+        has: user.has,
+        success: user.success
+    }); 
+    //console.log("inside function\n" + has);
+});
 
 
 
