@@ -19,14 +19,14 @@ router.post('/register', (req, res) => {
     
     bcrypt.hash(pword, saltRounds, function (err, hash) {
         if (role === 'tutor') {
-            var sql = "insert into Tutor(FirstName, LastName, email, pword) values('" + fname + "', '" + lname + "', '" + email + "', '" + hash + "')";
+            var sql = "insert into Tutor(FirstName, LastName, email, password) values('" + fname + "', '" + lname + "', '" + email + "', '" + hash + "')";
 
         }
         else if (role === 'student') {
-            var sql = "insert into Student(Name, email, pword) values('" + fname + " " + lname + "', '" + email + "', '" + hash + "')";
+            var sql = "insert into Student(name, email, pword) values('" + fname + " " + lname + "', '" + email + "', '" + hash + "')";
         }
 
-        var sql2 = "select * from tutor, student where tutor.email='" + email + "' or student.email='" + email + "'";
+        var sql2 = "select * from Tutor, Student where Tutor.email='" + email + "' or Student.email='" + email + "'";
         con.query(sql2, function (err, result) {
             if (err) throw err;
             else{
@@ -78,8 +78,8 @@ router.post('/login', (req, res) => {
     //role tutor-------
 
     if (role === 'tutor') {
-        var sql = "select * from tutor where email='" + email + "'";
-        var sql2 = "select pword from tutor where email = '" + email + "'";
+        var sql = "select * from Tutor where email='" + email + "'";
+        var sql2 = "select password from Tutor where email = '" + email + "'";
 
         con.query(sql, function (err, result) {
             if (err) throw err;
@@ -162,8 +162,8 @@ router.post('/login', (req, res) => {
     //role student------
 
     if (role === 'student') {
-        var sql = "select * from student where email='" + email + "'";
-        var sql2 = "select pword from student where email = '" + email + "'";
+        var sql = "select * from Student where email='" + email + "'";
+        var sql2 = "select pword from Student where email = '" + email + "'";
 
         con.query(sql, function (err, result) {
             if (err) throw err;
