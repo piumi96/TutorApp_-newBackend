@@ -15,7 +15,7 @@ router.put('/editProfile', (req, res) => {
         var subject = req.body.subject;
         var location = req.body.location;
     
-        var sql = "update tutor set FirstName='"+fname+"', LastName='"+lname+"', Mobile='"+mobile+"', Subject='"+subject+"', location='"+location+"' where email='"+email+"'";
+        var sql = "update Tutor set FirstName='"+fname+"', LastName='"+lname+"', Mobile='"+mobile+"', Subject='"+subject+"', location='"+location+"' where email='"+email+"'";
 
         con.query(sql, function(err, result){
             if (err){
@@ -38,7 +38,7 @@ router.put('/editProfile', (req, res) => {
         var mobile = req.body.mobile;
         var location = req.body.location;
 
-        var sql = "update student set name='"+name+"', mobile='"+mobile+"', location='"+location+"' where email='"+email+"'";
+        var sql = "update Student set name='"+name+"', mobile='"+mobile+"', location='"+location+"' where email='"+email+"'";
 
         con.query(sql, function(err, result){
             if (err){

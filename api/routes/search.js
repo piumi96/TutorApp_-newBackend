@@ -4,8 +4,8 @@ const router = express.Router();
 const con = require('../../databse/db');
 const passportSetup = require('../../config/passport-setup');
 
-router.get('/search', passport.authenticate('google'), (req, res) => {
-    var sql = "select * from tutor";
+router.get('/search', (req, res) => {
+    var sql = "select * from Tutor";
 
     con.query(sql, function(err, result){
         if (err) throw err;
@@ -32,7 +32,7 @@ router.get('/search', passport.authenticate('google'), (req, res) => {
 router.get('/searchbydistrict', (req, res) => {
     var district = req.body.district;
     //var district = 'gampaha';
-    var sql = "select * from tutor where Location like '%"+district+"%'";
+    var sql = "select * from Tutor where Location like '%"+district+"%'";
 
     con.query(sql, function(err, result){
         if(err) throw err;
